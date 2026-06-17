@@ -46,3 +46,13 @@ switch(dia){
 let miedad = 20
 let mensaje = miedad >= 18 ? "Mayor de edad": "Menor de edad"
 console.log(mensaje)
+
+
+let nombre ='Fernando'
+if(nombre == 'Alex'){
+    console.log('Bienvenido')
+}else if(nombre == 'Fer'){
+    console.log('Bienvenido Fer')
+}else{
+    console.log('No encontre su nombre')
+}
