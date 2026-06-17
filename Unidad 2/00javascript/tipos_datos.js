@@ -14,7 +14,7 @@ let noHayvalor = null
 let noDefinido = undefined
 
 //symbol valor unico
-let simbolunico = Sumbol('unico')
+let simbolunico = Symbol('unico')
 
 // datos gigantes hight
 let numeroGrande = 2n
