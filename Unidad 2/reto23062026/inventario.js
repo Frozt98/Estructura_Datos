@@ -27,5 +27,15 @@ class Tienda {
         console.log("-------------------\n"); 
     }
 }
+function main() {
+    console.log("=== INICIANDO TIENDA ===");
+    const miTienda = new Tienda();
 
-module.exports = Tienda;
+
+    miTienda.agregarProducto("Pan", 0.15);
+    miTienda.agregarProducto("Muffin", 0.85);
+    miTienda.mostrarProductos();
+
+    miTienda.eliminarProducto("Pan");
+    miTienda.mostrarProductos();
+}
