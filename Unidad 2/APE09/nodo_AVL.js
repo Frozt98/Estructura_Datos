@@ -137,3 +137,41 @@ export class ArbolAVLSensores {
         return this._buscarRecursivo(nodo.derecho, idSensor);
     }
 }
+
+class RegistroEnergia {
+    constructor() {
+         // Generación de un registro de energía ficticio (ej. 110V a 240V)
+        this.voltaje = +(110 + Math.random() * 130).toFixed(2);
+    }
+}
+
+// Clase para la simulación principal
+class SimulacionSmartGrid {
+    static ejecutarPrueba() {
+        const redElectrica = new ArbolAVLSensores();
+        const numSensores = 100000;
+        console.log(`Iniciando despliegue de ${numSensores} sensores inteligentes...`);
+        
+        // Inserción completamente secuencial 
+          // (Esto provocaría el peor caso O(n) en un BST normal)
+        for (let i = 0; i < numSensores; i++) {
+            let lectura = new RegistroEnergia(); 
+            redElectrica.insertar(i, lectura); 
+        }
+        console.log("Red eléctrica AVL construida y balanceada con éxito.");
+        
+        // Medición del tiempo de búsqueda
+        const idBuscado = 99999;
+        // Capturamos el tiempo con precisión submilisegundo en JS
+        const inicioBusqueda = performance.now();
+        
+        const resultado = redElectrica.buscar(idBuscado);
+        
+        const finBusqueda = performance.now();
+        const tiempoMs = finBusqueda - inicioBusqueda;
+        console.log(`Tiempo de búsqueda del Sensor ID ${idBuscado}: ${tiempoMs.toFixed(4)} ms.`);
+    }
+}
+
+// Iniciar simulación
+SimulacionSmartGrid.ejecutarPrueba();SimulacionSmartGrid.ejecutarPrueba();
