@@ -3,7 +3,7 @@ export class NodoAVL {
     constructor(idSensor, lectura) {
         this.idSensor = idSensor;  
         this.lectura = lectura;  
-        this.altura = 1; // Un nodo hoja inicialmente tiene altura 1  
+        this.altura = 1; 
         this.izquierdo = null;  
         this.derecho = null;  
     }
@@ -28,7 +28,7 @@ export class ArbolAVLSensores {
         return this.getAltura(nodo.izquierdo) - this.getAltura(nodo.derecho);  
     }  
   
-    // Rotación Simple a la Derecha (Se usa cuando el subárbol izquierdo es más pesado)
+    // Rotación Simple a la Derecha
     rotacionDerecha(y) {  
         let x = y.izquierdo;  
         let T2 = x.derecho;  
@@ -44,7 +44,7 @@ export class ArbolAVLSensores {
         return x; // Retornar la nueva raíz de este subárbol  
     }  
   
-    // TAREA COMPLETADA: Rotación Simple a la Izquierda (Se usa cuando el subárbol derecho es más pesado)  
+    // TAREA COMPLETADA: Rotación Simple a la Izquierda 
     rotacionIzquierda(x) {  
         let y = x.derecho;  
         let T2 = y.izquierdo;  
