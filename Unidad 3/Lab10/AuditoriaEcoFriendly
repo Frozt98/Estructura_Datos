@@ -1,0 +1,45 @@
+const MotorIndexacionBST = require('./MotorIndexacionBST.js');
+
+// Algoritmo de barajado Fisher-Yates
+function barajar(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Generar 20,000 palabras clave en orden alfabético estricto
+console.log("Generando 20,000 palabras clave...");
+const palabras = [];
+for (let i = 0; i < 20000; i++) {
+    // Rellenamos con ceros para garantizar el orden alfabético lexicográfico
+    palabras.push("keyword_" + String(i).padStart(5, '0'));
+}
+
+// Simulación del Peor Escenario (Árbol Degenerado / Alta Huella de Carbono)
+console.log("\nInyectando datos en orden alfabético (Árbol Degenerado)...");
+const motorDegenerado = new MotorIndexacionBST();
+for (const palabra of palabras) {
+    motorDegenerado.indexar(palabra, `https://cache.google.com/search?q=${palabra}`);
+}
+
+const ultimaPalabra = palabras[palabras.length - 1];
+motorDegenerado.buscar(ultimaPalabra);
+const ciclosDegenerado = motorDegenerado.ciclosCPU;
+console.log(`Búsqueda en árbol degenerado: ${ciclosDegenerado} ciclos de CPU`);
+
+// Refactorización Sostenible (Árbol Pseudo-balanceado / Baja Huella de Carbono)
+console.log("\nBarajando palabras con Fisher-Yates...");
+const palabrasBarajadas = barajar(palabras);
+
+console.log("Inyectando datos barajados (Árbol Pseudo-balanceado)...");
+const motorBalanceado = new MotorIndexacionBST();
+for (const palabra of palabrasBarajadas) {
+    motorBalanceado.indexar(palabra, `https://cache.google.com/search?q=${palabra}`);
+}
+
+motorBalanceado.buscar(ultimaPalabra);
+const ciclosBalanceado = motorBalanceado.ciclosCPU;
+console.log(`Búsqueda en árbol pseudo-balanceado: ${ciclosBalanceado} ciclos de CPU`);
