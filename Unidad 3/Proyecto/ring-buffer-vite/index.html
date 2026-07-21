@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buffer Circular de Frames — Demo</title>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">Estructuras de Datos · Cola Circular</div>
+      <h1>Buffer Circular de Frames de Video</h1>
+      <p>Sube un video o usa tu cámara. El productor extrae frames a una velocidad fija y los escribe en el buffer; el consumidor los lee a su propio ritmo. Ajusta capacidad y velocidades para observar overrun (descarte) y la latencia resultante.</p>
+    </header>
+
+    <div class="grid">
+      <div class="panel">
+        <h2><span class="dot write"></span>Productor — escribir()</h2>
+        <video id="srcVideo" muted playsinline loop></video>
+        <canvas id="producerCanvas" class="frame"></canvas>
+        <div class="controls">
+          <div class="buttons">
+            <label class="filebtn">Subir video<input type="file" id="fileInput" accept="video/*"></label>
+            <button id="camBtn">Usar cámara</button>
+            <button id="playBtn" class="primary">Iniciar</button>
+          </div>
+          <div class="row">
+            <label>Capacidad (N)</label>
+            <input type="range" id="capSlider" min="4" max="24" value="10">
+            <span class="val" id="capVal">10</span>
+          </div>
+          <div class="row">
+            <label>FPS productor</label>
+            <input type="range" id="fpsSlider" min="1" max="30" value="12">
+            <span class="val" id="fpsVal">12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel readpanel">
+        <h2><span class="dot read"></span>Consumidor — leer()</h2>
+        <canvas id="consumerCanvas" class="frame"></canvas>
+        <div class="controls">
+          <div class="row">
+            <label>Velocidad lectura</label>
+            <input type="range" id="readSlider" min="1" max="30" value="12">
+            <span class="val" id="readVal">12</span>
+          </div>
+          <div class="row">
+            <label>Retraso extra</label>
+            <input type="range" id="lagSlider" min="0" max="800" step="20" value="0">
+            <span class="val" id="lagVal">0ms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel ringwrap">
+        <svg id="ringSvg" viewBox="0 0 260 260" width="260" height="260"></svg>
+        <div>
+          <div class="stats">
+            <div class="stat">
+              <div class="label">Ocupación</div>
+              <div class="value" id="statOcc">0/10</div>
+            </div>
+            <div class="stat">
+              <div class="label">Latencia actual</div>
+              <div class="value ok" id="statLat">0 ms</div>
+            </div>
+            <div class="stat">
+              <div class="label">Latencia máx. teórica</div>
+              <div class="value" id="statMax">— ms</div>
+            </div>
+            <div class="stat">
+              <div class="label">Frames descartados</div>
+              <div class="value" id="statDisc">0</div>
+            </div>
+          </div>
+          <canvas id="sparkCanvas" class="spark"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <footer>frente = puntero de lectura (cian) · fin = puntero de escritura (ámbar) · slot rojo = sobreescritura (descarte controlado)</footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
