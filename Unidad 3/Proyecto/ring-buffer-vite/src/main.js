@@ -180,9 +180,13 @@ fileInput.addEventListener('change', (e)=>{
   if(!file) return;
   srcVideo.srcObject = null;
   srcVideo.src = URL.createObjectURL(file);
+
+  srcVideo.addEventListener('loadeddata', () => {
+    pCtx.drawImage(srcVideo, 0, 0, producerCanvas.width, producerCanvas.height);
+  }, { once: true });
+
   srcVideo.play();
 });
-
 camBtn.addEventListener('click', async ()=>{
   try{
     const stream = await navigator.mediaDevices.getUserMedia({video:true});
