@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Generar JSDoc",
+      "type": "shell",
+      "command": "npx jsdoc AuditoriaRedUrbana.js -d docs",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Genera el sitio HTML con la documentación JSDoc"
+    }
+  ]
+}

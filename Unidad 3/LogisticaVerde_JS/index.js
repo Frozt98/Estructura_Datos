@@ -90,6 +90,3 @@ redLogistica.agregarRuta(3, 4, 3);
 // Calcular la ruta más eficiente desde el nodo 0 hasta el nodo 4
 const resultado = redLogistica.dijkstra(0, 4);
 
-console.log("RESULTADOS DE LOGÍSTICA VERDE");
-console.log("Ruta optimizada:", resultado.ruta.join(" -> "));
-console.log("Consumo total energético:", resultado.consumoTotal, "kWh");
